@@ -1,0 +1,36 @@
+@import url("goods_table.css");
+@import url("buttons.css");
+
+form#add, form#update {
+	display: none;
+	border: 1px solid #FFCA5E;
+	padding: 5px;
+	position: fixed; 
+	right: 5px; 
+	top: 10px;
+}
+
+button#add_button{
+	position: fixed; 
+	right: 5px; 
+	top: 10px;
+}
+
+p#message{
+	display: none;
+}
+
+.field label {
+	float:left; 
+	padding-right:10px;
+}
+
+.field {
+	clear:both; 
+	text-align:right; 
+	line-height:25px;
+}
+
+
+
+

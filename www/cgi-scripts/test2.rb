@@ -25,23 +25,26 @@ end
 ary = conn.query(:hash, "SELECT * FROM GOODS ")
 headers = ary[0].keys
 tabh = <<header
-  <tr>
-      <td>#{headers[0]}</td>
-      <td>#{headers[1]}</td>
-      <td>#{headers[2]}</td>
-      <td>#{headers[3]}</td>
-   </tr>
+	<thead>
+		<tr>
+			<th>#{headers[0]}</th>
+			<th>#{headers[1]}</th>
+			<th>#{headers[2]}</th>
+			<th>#{headers[3]}</th>
+			<th></th>
+		</tr>
+	</thead>
 header
 tabc = ''
 ary.each {|row|
   fields = ''
   row.each{|key, value| fields+= "<td>#{value}</td>"}
-  fields +="<td><a href='http://localhost:8080/cgi-bin/test2.rb?delete=delete&ID=#{row['ID']}'>Delete</a></td>"
+  fields +="<td><a href='/cgi-bin/test2.rb?delete=delete&ID=#{row['ID']}'>Delete<span></td>"
   tabc +="<tr class = 'item'>#{fields}</tr>\n"
 
 }
 mytable = <<table
-<table border = "1">
+<table id = "goods">
     #{tabh}
     #{tabc}
 </table>
@@ -50,10 +53,11 @@ h = <<ht
 <html>
     <head>
         <title>DB TEST</title>
-        <link rel="stylesheet" type="text/css" href="http://localhost:8080/js/jquery-ui-1.10.0.custom/css/smoothness/jquery-ui-1.10.0.custom.css">
-        <script src="http://localhost:8080/js/jquery-ui-1.10.0.custom/js/jquery-1.9.0.js"></script>
-        <script src="http://localhost:8080/js/jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.js"></script>
-        <script src="http://localhost:8080/js/TestDB.js"></script>
+        <link rel="stylesheet" type="text/css" href="/js/jquery-ui-1.10.0.custom/css/smoothness/jquery-ui-1.10.0.custom.css">
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+        <script src="/js/jquery-ui-1.10.0.custom/js/jquery-1.9.0.js"></script>
+        <script src="/js/jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.js"></script>
+        <script src="/js/TestDB.js"></script>
     </head>
     <body onload = load()>
         <form method="post" action="/cgi-bin/test2.rb">

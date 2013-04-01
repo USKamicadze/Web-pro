@@ -33,10 +33,23 @@ function show_update_form(id, name, type, price){
 	}
 }
 
+function message(caption, color){
+	$('#message').text(caption)
+	var top = 30
+	if (af.style.display == 'block')
+		top = 190
+	if (uf.style.display == 'block')
+		top = 230
+	$('#message').css({top: top})
+	$('#message').css('display','block')
+	$('#message').css('color',color)
+	$('#message').fadeOut(2000)
+}
+
 function check_form(){
 	for(var i = 0; i < 4; ++i)
 		if(this[i].value == ''){
-			alert('Заполните все поля!')
+			message('Заполните все поля!', '#FF0000')
 			return false
 		}
 }
@@ -59,6 +72,7 @@ $(document).ready(function() {
 	af = document.getElementById('add')
 	uf = document.getElementById('update')
 	ab = document.getElementById('add_button')
+	message($('#message').text(), '#00FFaa')
 	af.onsubmit = check_form
 	uf.onsubmit = check_form
 });

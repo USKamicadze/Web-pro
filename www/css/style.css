@@ -18,6 +18,11 @@ button#add_button{
 
 p#message{
 	display: none;
+	position: fixed; 
+	right: 5px; 
+	top: 10px;
+	color: #FF0000;
+	font-size: 14pt;
 }
 
 .field label {

@@ -52,7 +52,8 @@ require_relative 'View'
 
 VIEWS = {
   'main_template' => View.new('main_template.haml'),
-  'category_template' => View.new('category_template.haml')
+  'category_template' => View.new('category_template.haml'),
+  'images_template' => View.new('images_template.haml')
 }
 
 require_relative 'Controller'

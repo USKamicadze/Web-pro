@@ -29,9 +29,9 @@
           %td{:onclick => onclick}= row['type']
           %td{:onclick => onclick}= row['price']
           %td
-            %a.minimal{:href => "/cgi-bin/testdbi.rb?delete=delete&id=#{row['id']}"} Удалить
+            %a.minimal{:href => "/cgi-bin/bd.rb?delete=delete&id=#{row['id']}"} Удалить
     %button.minimal#add_button{:onclick => 'show_add_form()'} Добавить
-    %form#add{:method => 'post', :action => '/cgi-bin/testdbi.rb', 'accept-charset' => 'windows-1251'}
+    %form#add{:method => 'post', :action => '/cgi-bin/bd.rb', 'accept-charset' => 'windows-1251'}
       .field
         %label{:for => 'name'} Название:
         %input{:type => 'text', :name => 'name'}
@@ -46,10 +46,10 @@
       %br
       %input.minimal{:type => 'submit', :name => 'add', :value => 'Добавить'}
       %input.minimal{:type => 'button', :onclick => 'hide_form(af)', :value => 'Отмена'}
-    %form#update{:method => 'post', :action => '/cgi-bin/testdbi.rb', 'accept-charset' => 'windows-1251'}
+    %form#update{:method => 'post', :action => '/cgi-bin/bd.rb', 'accept-charset' => 'windows-1251'}
       .field
         %label{:for => 'id'} ID:
-        %input{:type => 'text', :name => 'id'}
+        %input{:type => 'text', :name => 'id', :disabled => '1'}
       %br
       .field
         %label{:for => 'name'} Название:
@@ -62,7 +62,8 @@
       .field
         %label{:for => 'price'} Цена:
         %input.num_filter{:type => 'text', :name => 'price'}
-      %br
+      %br 
+      %input{:type => 'hidden', :name => 'id'}
       %input.minimal{:type => 'submit', :name => 'update', :value => 'Изменить'}
       %input.minimal{:type => 'button', :onclick => 'hide_form(uf)', :value => 'Отмена'}
     %p#message= message

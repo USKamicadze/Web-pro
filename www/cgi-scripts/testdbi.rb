@@ -58,7 +58,7 @@ begin
       cgi.td(:onclick => onclick) { row[:name] } +
       cgi.td(:onclick => onclick) { row[:type] } +
       cgi.td(:onclick => onclick) { row[:price] } +
-      cgi.td { cgi.a(:class => 'minimal', :href => "/cgi-bin/testdbi.rb?delete=delete&id=#{row[:id]}"){ 'Delete' } }
+      cgi.td { cgi.a(:class => 'minimal', :href => "/cgi-bin/testdbi.rb?delete=delete&id=#{row[:id]}"){ 'Удалить' } }
     }
   }
   sth.finish

@@ -3,10 +3,12 @@ var oldid = -1
 var af;
 var uf;
 var ab;
+var form_size = 0;
 function show_add_form(){
     af.style.display = 'block'
 	hide_form(uf)
 	ab.style.display = 'none'
+	form_size = af.offsetHeight
 }
 
 function hide_form(form){
@@ -15,31 +17,33 @@ function hide_form(form){
 		ab.style.display = 'block'
 }
 
-function show_update_form(id, name, type, price){
+function show_update_form(args){
 	hide_form(af)
 	ab.style.display = 'none'
-	uf[0].value = id
-	uf[1].value = name
-	uf[2].value = type
-	uf[3].value = price
-	uf[4].value = id
-    var newid = id
+	for (var i = 0; i < args.length; ++i){
+		if (args[i] instanceof Array){
+			for(var j = 0; j < uf[i].options.length; ++j){
+				uf[i].options[j].selected = false
+				if (args[i].indexOf(parseInt(uf[i].options[j].value)) != -1)
+					uf[i].options[j].selected = true
+			}
+		}else
+			uf[i].value = args[i]
+	}
+	var newid = args[0]
 	if (oldid == newid){
-		uf.style.display = 'none'
+		hide_form(uf)
 		oldid = -1
 	} else {
 		uf.style.display =  'block'
 		oldid = newid
 	}
+	form_size = uf.offsetHeight
 }
 
 function message(caption, color){
 	$('#message').text(caption)
-	var top = 30
-	if (af.style.display == 'block')
-		top = 190
-	if (uf.style.display == 'block')
-		top = 230
+	var top = form_size + 25
 	$('#message').css({top: top})
 	$('#message').css('display','block')
 	$('#message').css('color',color)
@@ -47,7 +51,7 @@ function message(caption, color){
 }
 
 function check_form(){
-	for(var i = 0; i < 4; ++i)
+	for(var i = 0; i < this.elements.length; ++i)
 		if(this[i].value == ''){
 			message('Заполните все поля!', '#FF0000')
 			return false

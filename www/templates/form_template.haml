@@ -16,11 +16,11 @@
           -fields[i].options.each do |opt|
             %option{:value => opt[0]}= opt[1]
       -when 'Image' then
-        %input{:type => 'file', :name => fields[i].name}
+        %input{:title => 'Обзор', :type => 'file', :name => fields[i].name, :accept => 'image/jpeg,image/png,image/gif'}
       -else
         %input{:type => 'text', :name => fields[i].name}
   %br
-%input.minimal{:type => 'submit', :name => 'submit', :value => act == 'add' ? 'Добавить':'Изменить'}
-%input.minimal.cancel{:type => 'button', :onclick => 'hide_form(af)', :value => 'Отменить'}
+%input{:class => 'btn', :type => 'submit', :name => 'submit', :value => act == 'add' ? 'Добавить':'Изменить'}
+%input.cancel{:class => 'btn', :type => 'button', :onclick => 'hide_form(af)', :value => 'Отменить'}
 %input{:type => 'hidden', :name => 'action', :value => act}
 %input{:type => 'hidden', :name => 'table', :value => table}

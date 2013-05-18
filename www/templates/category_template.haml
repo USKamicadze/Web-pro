@@ -17,7 +17,7 @@
     %a{:href => "/test/bd.rb?table=images"} Картинки
     #test
     %button.minimal#add_button Добавить
-    -f = Haml::Engine.new(File.read('form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'add', :fields => fields, :table => table})
+    -f = Haml::Engine.new(File.read('templates/form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'add', :fields => fields, :table => table})
     %form#add{:method => 'post', :action => "/test/bd.rb", 'accept-charset' => 'UTF-8'}= f
-    -f = Haml::Engine.new(File.read('form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'update', :fields => fields, :table => table})
+    -f = Haml::Engine.new(File.read('templates/form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'update', :fields => fields, :table => table})
     %form#update{:method => 'post', :action => '/test/bd.rb', 'accept-charset' => 'UTF-8'}= f

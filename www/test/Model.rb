@@ -157,7 +157,7 @@ class Model
     sth.execute
     rows = []
     sth.fetch{|row|
-      rows << as_array ? row.to_a: row.to_h
+      rows << (as_array ? row.to_a : row.to_h)
     }
     sth.finish
     rows

@@ -64,5 +64,5 @@ CONTROLLERS = {
     'groups' => Controller.new(MODELS['groups'], VIEWS['main_template']),
     'orders' => Controller.new(MODELS['orders'], VIEWS['main_template']),
     'category' =>  Categories_Controller.new(MODELS['category'], VIEWS['category_template']),
-    'images' => Controller.new(MODELS['images'], VIEWS['images_template'])
+    'images' => Image_Controller.new(MODELS['images'], VIEWS['images_template'])
 }

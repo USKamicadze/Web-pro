@@ -1,9 +1,6 @@
 #encoding: UTF-8
 require 'haml'
 require 'json'
-def array_to_hash_of_fields(array)
-  Hash.new(array.map{|f| [f.name, f]})
-end
 
 class Controller
 
@@ -52,7 +49,7 @@ class Image_Controller < Controller
   def get_params(connection)
     {
         :table => @model.name,
-        :fields => array_to_hash_of_fields(@model.get_all_fields(connection)),
+        :fields => @model.get_all_fields(connection),
         :rows => @model.select(connection, false),
     }
   end

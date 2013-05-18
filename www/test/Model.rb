@@ -1,5 +1,4 @@
 
-
 class Field
   attr_reader :name, :caption, :type
 

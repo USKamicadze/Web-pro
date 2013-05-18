@@ -22,7 +22,6 @@
                     }).click({id: category[parent_id][i]['id'], obj: c}, function(e){
                         $.post('/test/bd.rb', {table: gtable, action: 'delete', id:e.data.id})
                         e.data.obj.remove()
-                        //location.reload()
                     })
                 )
                 if (category[category[parent_id][i]['id']] != undefined){

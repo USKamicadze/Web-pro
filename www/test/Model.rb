@@ -80,7 +80,7 @@ class Model
     require_relative 'Image'
     @images_fields.each{|field|
       link = "#{Time.now.nsec}.#{params[field.name].original_filename.split.last}"
-      File.open('\images\\' + link, 'wb'){ |file| file.write params[field.name].read }
+      File.open('images\\' + link, 'wb'){ |file| file.write params[field.name].read }
       Image.create_thumb(params[field.name], link)
       params.params[field.name] = [link]
     }

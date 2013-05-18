@@ -53,7 +53,8 @@ class Image_Controller < Controller
     {
         :table => @model.name,
         :fields => array_to_hash_of_fields(@model.get_all_fields(connection)),
-        :rows => @model.select(connection),
+        :rows => @model.select(connection, false),
     }
   end
+
 end

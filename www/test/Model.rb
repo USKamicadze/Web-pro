@@ -138,7 +138,7 @@ class Model
     }
   end
 
-  def select(connection)
+  def select(connection, as_array = true)
     fields = @fields.map{|field|
       "#{@name}.#{field.name}"
     }
@@ -157,7 +157,7 @@ class Model
     sth.execute
     rows = []
     sth.fetch{|row|
-      rows << row.to_a
+      rows << as_array ? row.to_a: row.to_h
     }
     sth.finish
     rows

@@ -1,0 +1,33 @@
+form#add, form#update {
+    display: none;
+    border: 1px solid #CDCCC9;
+    padding: 5px;
+    position: fixed;
+    background-color: #65635C;
+}
+
+button#add_button{
+    position: absolute;
+    left: 220px;
+    top: 55px;
+}
+
+p#message{
+    display: none;
+    position: fixed;
+    right: 5px;
+    top: 10px;
+    color: #FF0000;
+    font-size: 14pt;
+}
+
+.field label {
+    float:left;
+    padding-right:10px;
+}
+
+.field {
+    clear:both;
+    /*text-align:right;   */
+    line-height:25px;
+}

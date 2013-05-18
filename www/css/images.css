@@ -10,6 +10,9 @@ body { font: 11px/18px "Lucida Sans Unicode", "Lucida Sans", "Lucida Grande", Ve
 p { margin-bottom: 18px; }
 a { color: #e7e691; text-decoration: none; outline-style: none; }
 a:hover { text-decoration: underline; }
+label{
+    color: #E0DFDC
+}
 
 
 #page { margin: 0 auto; width: 706px; padding-top: 34px;}

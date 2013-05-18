@@ -1,0 +1,47 @@
+﻿%html
+  %head 
+    %meta{'http-equiv' => "Content-Type", :content => "text/html; charset=windows-1251"}
+    %title Goods
+    %link{:rel => 'stylesheet', :type => 'text/css', :href => '/js/jquery-ui-1.10.0.custom/css/smoothness/jquery-ui-1.10.0.custom.css'}
+    %link{:rel => 'stylesheet', :type => 'text/css', :href => '/css/style_main.css'}
+    %script{:src => '/js/jquery-ui-1.10.0.custom/js/jquery-1.9.0.js'}
+    %script{:src => '/js/jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.js'}
+    %script{:src => '/js/TestDB.js'}
+  %body
+    %a{:href => "/test/bd.rb?table=goods"} Товары
+    %a{:href => "/test/bd.rb?table=users"} Пользователи
+    %a{:href => "/test/bd.rb?table=groups"} Группы
+    %a{:href => "/test/bd.rb?table=orders"} Заказы
+    %a{:href => "/test/bd.rb?table=category"} Категории
+    %a{:href => "/test/bd.rb?table=images"} Картинки
+    %table{:id => 'goods'}
+      %thead
+        %tr
+          -for field in fields do
+            %th= field.caption
+          %th
+      -for row in rows do
+        -onclick = "show_update_form(#{row.each{|v| v.to_s+','}})"
+        %tr
+          -row.each_index do |i|
+            -if fields[i].type == 'Array'
+              -value = []
+              -row[i].each do |v|
+                -fields[i].options.each do |opt|
+                  -value.push(opt[1]) if v == opt[0]
+              -value = value.join(', ')
+            -elsif fields[i].type == 'Refer_String'
+              -v = row[i][0]
+              -fields[i].options.each do |opt|
+                -value = opt[1] if v == opt[0]
+            -elsif fields[i].type == 'Image'
+              -value = Haml::Engine.new('%img{:src => "/images/#{row}"}').render(Object.new, {:row => row[i]})
+            -else value = row[i]
+            %td{:onclick => onclick}= value
+          %td
+            %a.minimal{:href => "/test/bd.rb?table=#{table}&action=delete&id=#{row[0]}"} Удалить
+    %button.minimal#add_button{:onclick => 'show_add_form()'} Добавить
+    -f = Haml::Engine.new(File.read('templates\form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'add', :fields => fields, :table => table})
+    %form#add{:method => 'post', :enctype => "multipart/form-data", :action => "/test/bd.rb"}= f
+    -f = Haml::Engine.new(File.read('templates\form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'update', :fields => fields, :table => table})
+    %form#update{:method => 'post', :enctype => "multipart/form-data", :action => '/test/bd.rb', 'accept-charset' => 'UTF-8'}= f

@@ -1,0 +1,23 @@
+﻿%html 
+  %head
+    %meta{'http-equiv' => "Content-Type", :content => "text/html; charset=UTF-8"}
+    %title= table
+    %link{:rel => 'stylesheet', :type => 'text/css', :href => '/js/jquery-ui-1.10.0.custom/css/smoothness/jquery-ui-1.10.0.custom.css'}
+    %link{:rel => 'stylesheet', :type => 'text/css', :href => '/css/style_category.css'}
+    %script{:src => '/js/jquery-ui-1.10.0.custom/js/jquery-1.9.0.js'}
+    %script{:src => '/js/jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.js'}
+    %script{:src => '/js/Tree.js'}
+    %script{:src => '/js/Form.js'}
+  %body{:onload => "PrepareTree(#{tree}, '#{table}')"}
+    %a{:href => "/test/bd.rb?table=goods"} Товары
+    %a{:href => "/test/bd.rb?table=users"} Пользователи
+    %a{:href => "/test/bd.rb?table=groups"} Группы
+    %a{:href => "/test/bd.rb?table=orders"} Заказы
+    %a{:href => "/test/bd.rb?table=category"} Категории
+    %a{:href => "/test/bd.rb?table=images"} Картинки
+    #test
+    %button.minimal#add_button Добавить
+    -f = Haml::Engine.new(File.read('form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'add', :fields => fields, :table => table})
+    %form#add{:method => 'post', :action => "/test/bd.rb", 'accept-charset' => 'UTF-8'}= f
+    -f = Haml::Engine.new(File.read('form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'update', :fields => fields, :table => table})
+    %form#update{:method => 'post', :action => '/test/bd.rb', 'accept-charset' => 'UTF-8'}= f

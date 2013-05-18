@@ -1,0 +1,26 @@
+﻿-fields.each_index do |i|
+  -next if i == 0 && act == 'add'
+  .field
+    %label{:for => fields[i].name}= fields[i].caption
+    -if i == 0 && act == 'update'
+      %input{:type => 'text', :name => 'id', :readonly => 'readonly'}
+    -else case fields[i].type
+      -when 'Integer' then
+        %input.num_filter{:type => 'text', :name => fields[i].name}
+      -when 'Array' then
+        %select{:multiple => 'multiple', :name => fields[i].name}
+          -fields[i].options.each do |opt|
+            %option{:value => opt[0]}= opt[1]
+      -when 'Refer_String' then
+        %select{:name => fields[i].name}
+          -fields[i].options.each do |opt|
+            %option{:value => opt[0]}= opt[1]
+      -when 'Image' then
+        %input{:type => 'file', :name => fields[i].name}
+      -else
+        %input{:type => 'text', :name => fields[i].name}
+  %br
+%input.minimal{:type => 'submit', :name => 'submit', :value => act == 'add' ? 'Добавить':'Изменить'}
+%input.minimal.cancel{:type => 'button', :onclick => 'hide_form(af)', :value => 'Отменить'}
+%input{:type => 'hidden', :name => 'action', :value => act}
+%input{:type => 'hidden', :name => 'table', :value => table}

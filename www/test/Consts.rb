@@ -51,8 +51,8 @@ MODELS = {
 require_relative 'View'
 
 VIEWS = {
-    'main_template' => View.new('main_template.haml'),
-    'category_template' => View.new('category_template.haml')
+  'main_template' => View.new('main_template.haml'),
+  'category_template' => View.new('category_template.haml')
 }
 
 require_relative 'Controller'

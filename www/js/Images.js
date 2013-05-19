@@ -4,7 +4,7 @@ function DeleteImg(id) {
         resizable: false,
         height:140,
         modal: true,
-        position: 'top',
+        position: [300,300],
         buttons: {
             "Да": function() {
                 $.post('/test/bd.rb', {table: 'images', action: 'delete', id:id})

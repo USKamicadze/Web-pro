@@ -76,5 +76,5 @@ CONTROLLERS = {
     'orders' => Controller.new(MODELS['orders'], VIEWS['main_template']),
     'category' =>  Categories_Controller.new(MODELS['category'], VIEWS['category_template']),
     'images' => Image_Controller.new(MODELS['images'], VIEWS['images_template']),
-    'advanced_goods' => Controller.new(MODELS['advanced_goods'], VIEWS['main_template'])
+    'advanced_goods' => Controller.new(MODELS['advanced_goods'], VIEWS['advanced_goods_template'])
 }

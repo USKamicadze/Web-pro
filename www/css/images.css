@@ -46,15 +46,25 @@ h2 { font-size: 11px; line-height: 17px; margin-bottom: 0; }
     position: absolute;
 }
 
-.del{
+.del, .edit{
     display: none;
     position: relative;
-    bottom: 145px;
-    left: 135px;
-    background: url(delete.png);
     height: 12;
     width: 12;
 }
-.image_container:hover .del{
+
+.edit{
+    bottom: 130px;
+    left:135px;
+    background: url(edit.png);
+}
+
+.del{
+    bottom: 145px;
+    left: 135px;
+    background: url(delete.png);
+}
+
+.image_container:hover .del, .image_container:hover .edit{
     display: block;
 }

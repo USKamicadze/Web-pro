@@ -26,6 +26,5 @@ function UpdateImg(data){
 }
 
 $(document).ready(function(){
-  PrepareForms();
-  //PrepareImages();
+    PrepareForms();
 })

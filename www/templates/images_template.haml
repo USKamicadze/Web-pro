@@ -32,13 +32,14 @@
       %form#update{:method => 'post', :action => '/test/bd.rb', :enctype => 'multipart/form-data'}= f
       .demonstrations
         -for row in rows do
-          %a{:href => "/images/#{row['fs_link']}",
-             :class => 'lightview',
-             'data-lightview-group' => 'images',
-             'data-lightview-title' => row['name']}
-            %img{:src => "/images/thumb/#{row['fs_link']}", :alt => ''}
+          .image_container
+            %a{:img_id => row['id'], :href => "/images/#{row['fs_link']}",
+               :class => 'lightview',
+               'data-lightview-group' => 'images',
+               'data-lightview-title' => row['name']}
+              %img{:src => "/images/thumb/#{row['fs_link']}", :alt => ''}
             .del{:onclick => "DeleteImg(#{row['id']})"}
-      #dialog-confirm
+      #dialog-confirm{:title => 'Удалить?'}
         %p
           %span{:class => 'ui-icon ui-icon-alert'}
           Вы уверены?

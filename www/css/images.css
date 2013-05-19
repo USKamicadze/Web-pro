@@ -15,7 +15,7 @@ label{
 }
 
 
-#page { margin: 0 auto; width: 706px; padding-top: 34px;}
+#page { position: relative; margin: 0 auto; width: 706px; padding-top: 34px;}
 
 h1, h2 { clear: both; font-family: "Lucida Sans", "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, sans-serif; font-weight: bold; margin: 0 0 17px 0;}
 h1 { font-size: 27px; line-height: 34px; font-family: "HelveticaNeue","Helvetica Neue","HelveticaNeueRoman","HelveticaNeue-Roman","Helvetica Neue Roman",Helvetica,Arial,sans-serif,Verdana; }

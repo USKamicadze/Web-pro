@@ -18,6 +18,7 @@
     %script{:src => '/js/Form.js'}
   %body
     #page
+      %button#add_button{:class => 'btn'} Добавить
       %a{:href => "/test/bd.rb?table=goods"} Товары
       %a{:href => "/test/bd.rb?table=users"} Пользователи
       %a{:href => "/test/bd.rb?table=groups"} Группы
@@ -25,7 +26,6 @@
       %a{:href => "/test/bd.rb?table=category"} Категории
       %a{:href => "/test/bd.rb?table=images"} Картинки
       %a{:href => "/test/bd.rb?table=advanced_goods"} Товары2
-      %button#add_button{:class => 'btn'} Добавить
       -f = Haml::Engine.new(File.read('templates/form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'add', :fields => fields, :table => table})
       %form#add{:method => 'post', :action => "/test/bd.rb", :enctype => 'multipart/form-data'}= f
       -f = Haml::Engine.new(File.read('templates/form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'update', :fields => fields, :table => table})

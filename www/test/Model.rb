@@ -108,9 +108,15 @@ class Model
     }
   end
 
+  def update_images(params, connection)
+    delete_images(params, connection)
+    add_images(params)
+  end
+
   def update(params, connection)
     req_params = required_params
     sql = "update #{@name} set #{req_params*' = ?, ' + ' = ?'} where id = ?"
+    update_images(params, connection)
     prepare_and_execute(connection, sql, required_params.push('id'),params)
     update_links(params, connection)
   end
@@ -118,13 +124,15 @@ class Model
   def delete(params, connection)
     req_params = ['id']
     sql = "Delete from #{@name} where id = ?"
+    required_params # для картинок
     delete_images(params, connection)
     prepare_and_execute(connection, sql, req_params,params)
   end
 
   def delete_images(params, connection)
+    required_params
     return if @images_fields.size == 0
-    sql = "Select * from #{name} where id in (#{params['id']}*',')"
+    sql = "Select * from #{name} where id in (#{'?,'*(params.params['id'].size - 1) + '?'})"
     sth = connection.prepare(sql)
     sth.execute(*params.params['id'])
     rows = []
@@ -133,8 +141,10 @@ class Model
     }
     sth.finish
     rows.each{|row|
-      File.delete('images\\' + row[field.name])
-      File.delete('images\thumb\\' + row[field.name])
+      @images_fields.each{|field|
+        File.delete('images\\' + row[field.name])
+        File.delete('images\thumb\\' + row[field.name])
+      }
     }
   end
 

@@ -162,7 +162,9 @@ class Model
       i += 1
       "array_agg(#{refer.link_table}.#{refer.link_fields[1]})"
     }
-    sql = "Select #{fields * ', '}#{', ' unless refers.empty?} #{refers*', '} From #{@name} #{joins} #{'Group by '+@name+'.id' unless refers.empty?}"
+    sql = "Select #{fields * ', '}#{', ' unless refers.empty?} #{refers*', '}" +
+          " From #{@name} #{joins} #{'Group by '+@name+'.id' unless refers.empty?}"+
+          " order by #{@name}.id"
     sth = connection.prepare(sql)
     sth.execute
     rows = []

@@ -24,6 +24,7 @@
       %a{:href => "/test/bd.rb?table=orders"} Заказы
       %a{:href => "/test/bd.rb?table=category"} Категории
       %a{:href => "/test/bd.rb?table=images"} Картинки
+      %a{:href => "/test/bd.rb?table=advanced_goods"} Товары2
       %button#add_button{:class => 'btn'} Добавить
       -f = Haml::Engine.new(File.read('templates/form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'add', :fields => fields, :table => table})
       %form#add{:method => 'post', :action => "/test/bd.rb", :enctype => 'multipart/form-data'}= f

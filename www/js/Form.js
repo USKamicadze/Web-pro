@@ -28,15 +28,18 @@ Form.prototype.hide = function(){
 }
 
 Form.prototype.fill = function(data){
+    var f = this.form[0]
     for (var i = 0; i < data.length; ++i){
         if (data[i] instanceof Array){
             for(var j = 0; j < this.form[0][i].options.length; ++j){
-                this.form[0][i].options[j].selected = false
+                f[i].options[j].selected = false
                 if (data[i].indexOf(parseInt(this.form[0][i].options[j].value)) != -1)
-                    this.form[0][i].options[j].selected = true
+                    f[i].options[j].selected = true
             }
-        }else
-            this.form[0][i].value = data[i]
+        }else if(f[i].type == 'file')
+            continue
+        else
+            f[i].value = data[i]
     }
 }
 

@@ -4,10 +4,11 @@ function DeleteImg(id) {
         resizable: false,
         height:140,
         modal: true,
+        position: 'top',
         buttons: {
             "Да": function() {
                 $.post('/test/bd.rb', {table: 'images', action: 'delete', id:id})
-                location.reload();
+                $('div[img_id='+id+']').remove()
                 $( this ).dialog( "close" );
             },
             "Нет": function() {
@@ -17,7 +18,14 @@ function DeleteImg(id) {
     });
 }
 
-    $(document).ready(function(){
-        PrepareForms();
-        //PrepareImages();
-    })
+function UpdateImg(data){
+   updateForm.fill(data)
+   var pos = $('div[img_id='+data[0]+']').position()
+   pos.left += 150
+   updateForm.show(pos)
+}
+
+$(document).ready(function(){
+  PrepareForms();
+  //PrepareImages();
+})

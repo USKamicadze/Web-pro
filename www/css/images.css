@@ -22,18 +22,39 @@ h1 { font-size: 27px; line-height: 34px; font-family: "HelveticaNeue","Helvetica
 h2 { font-size: 11px; line-height: 17px; margin-bottom: 0; }
 
 .demonstrations { float: left; clear: both; width: 100%; margin-bottom: 18px; }
+.image_container, .demonstrations a, .demonstrations a img  {
+    float: left;
+    width: 150px;
+    height: 150px;
+}
+
+.image_container{
+    margin: 0 5px 5px 0;
+}
+
 .demonstrations a {
-  float: left;
-  width: 150px;
-  height: 80px;
-  margin: 0 5px 5px 0;
+
   cursor: pointer;
 }
-.demonstrations a img {
-  float: left;
-  width: 150px;
-  height: 80px;
-}
-.demonstrations .rightmost { margin-right: 0; }
 
-.resources strong { font-family: "Lucida Sans"; }
+/*.demonstrations .rightmost { margin-right: 0; }  */
+
+/*.resources strong { font-family: "Lucida Sans"; }  */
+
+#dialog-confirm{
+    display: none;
+    position: absolute;
+}
+
+.del{
+    display: none;
+    position: relative;
+    bottom: 145px;
+    left: 135px;
+    background: url(delete.png);
+    height: 12;
+    width: 12;
+}
+.image_container:hover .del{
+    display: block;
+}

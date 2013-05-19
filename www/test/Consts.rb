@@ -45,8 +45,8 @@ MODELS = {
         Field.new('fs_link', 'Изображение', 'Image')
     ]
     ),
-    'Advanced_Goods' => Model.new(
-        'Advanced_Goods', [
+    'advanced_goods' => Model.new(
+        'advanced_goods', [
         Field.new('id', 'ID', 'Integer'),
         Field.new('link_to_image', 'Изображение', 'Image'),
         Field.new('name', 'Название', 'String'),
@@ -74,5 +74,6 @@ CONTROLLERS = {
     'groups' => Controller.new(MODELS['groups'], VIEWS['main_template']),
     'orders' => Controller.new(MODELS['orders'], VIEWS['main_template']),
     'category' =>  Categories_Controller.new(MODELS['category'], VIEWS['category_template']),
-    'images' => Image_Controller.new(MODELS['images'], VIEWS['images_template'])
+    'images' => Image_Controller.new(MODELS['images'], VIEWS['images_template']),
+    'advanced_goods' => Controller.new(MODELS['advanced_goods'], VIEWS['main_template'])
 }

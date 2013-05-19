@@ -8,7 +8,7 @@
     %link{:rel => 'stylesheet', :type => 'text/css', :href => '/css/lightview/lightview.css'}
     %link{:rel => 'stylesheet', :type => 'text/css', :href => '/css/bootstrap.css'}
     %link{:rel => 'stylesheet', :type => 'text/css', :href => '/css/bootstrap-responsive.css'}
-    %script{:src => '/js/jquery-ui-1.10.0.custom/js/jquery-1.9.0.js'}
+    %script{:src => '/js/jquery-1.9.1.js'}
     %script{:src => '/js/jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.js'}
     %script{:src => '/js/spinners/spinners.min.js'}
     %script{:src => '/js/bootstrap.js'}
@@ -24,7 +24,6 @@
       %a{:href => "/test/bd.rb?table=orders"} Заказы
       %a{:href => "/test/bd.rb?table=category"} Категории
       %a{:href => "/test/bd.rb?table=images"} Картинки
-      %br
       %button#add_button{:class => 'btn'} Добавить
       -f = Haml::Engine.new(File.read('templates/form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'add', :fields => fields, :table => table})
       %form#add{:method => 'post', :action => "/test/bd.rb", :enctype => 'multipart/form-data'}= f

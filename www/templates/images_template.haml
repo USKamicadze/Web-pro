@@ -39,7 +39,7 @@
                'data-lightview-title' => row['name']}
               %img{:src => "/images/thumb/#{row['fs_link']}", :alt => ''}
             .del{:onclick => "DeleteImg(#{row['id']})"}
-            .edit{:onclick => "ShowForm(#{row['id']},#{row['name']}, #{row['fs_link']})"}
+            .edit{:onclick => "UpdateImg([#{row['id']},'#{row['name']}', '#{row['fs_link']}'])"}
       #dialog-confirm{:title => 'Удалить?'}
         %p
           %span{:class => 'ui-icon ui-icon-alert'}

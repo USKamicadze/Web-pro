@@ -7,9 +7,9 @@ form#add, form#update {
 }
 
 button#add_button{
-    position: absolute;
-    left: 220px;
-    top: 55px;
+    position: relative;
+    right: 420px;
+    top: 30px;
 }
 
 p#message{

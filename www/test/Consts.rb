@@ -44,6 +44,16 @@ MODELS = {
         Field.new('name', 'Название', 'String'),
         Field.new('fs_link', 'Изображение', 'Image')
     ]
+    ),
+    'Advanced_Goods' => Model.new(
+        'Advanced_Goods', [
+        Field.new('id', 'ID', 'Integer'),
+        Field.new('link_to_image', 'Изображение', 'Image'),
+        Field.new('name', 'Название', 'String'),
+        Field.new('price', 'Цена', 'Integer')
+    ],[
+      ReferenceField.new('category', 'Категория', 'Refer_String', 'category', 'name', 'agoods_category', ['agood_id', 'category_id'])
+    ]
     )
 
 }

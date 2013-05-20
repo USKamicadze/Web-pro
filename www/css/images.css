@@ -34,7 +34,6 @@ h2 { font-size: 11px; line-height: 17px; margin-bottom: 0; }
 }
 
 .demonstrations a {
-
   cursor: pointer;
 }
 
@@ -47,25 +46,29 @@ h2 { font-size: 11px; line-height: 17px; margin-bottom: 0; }
     position: absolute;
 }
 
-.del, .edit{
+.del, .edit, .show_full{
     display: none;
     position: relative;
-    height: 12;
-    width: 12;
+    height: 16;
+    width: 16;
+    left:130px;
 }
 
 .edit{
     bottom: 130px;
-    left:135px;
     background: url(edit.png);
 }
 
 .del{
     bottom: 145px;
-    left: 135px;
     background: url(delete.png);
 }
 
-.image_container:hover .del, .image_container:hover .edit{
+.show_full{
+    bottom: 115px;
+    background: url(show.png);
+}
+
+.image_container:hover .del, .image_container:hover .edit, .image_container:hover .show_full{
     display: block;
 }

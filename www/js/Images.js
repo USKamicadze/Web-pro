@@ -25,6 +25,10 @@ function UpdateImg(data){
    updateForm.show(pos)
 }
 
+function ShowFullImage(file_name){
+   location.href = '/images/'+file_name
+}
+
 $(document).ready(function(){
     PrepareForms();
 })

@@ -51,7 +51,7 @@ function extend(Child, Parent) {
 
 function AddClick(event){
     var pos = $(this).position()
-    pos.left -= 200
+    pos.left += 500
     event.data.form.show(pos)
 }
 

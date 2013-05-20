@@ -171,7 +171,6 @@ class Model
     sth.fetch{|row|
       rows << row
     }
-    print rows
     sth.finish
     rows
   end
@@ -186,11 +185,12 @@ class Model
   end
 
   def get_all_fields(connection)
-    (@fields + @refers).each{|field|
+    Hash.new((@fields + @refers).map{|field|
       if field.type == 'Refer_String' || field.type == 'Array'
         field.set_options(connection)
       end
-    }
+      [field.name, field]
+    })
   end
 
 end

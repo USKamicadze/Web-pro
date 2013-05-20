@@ -23,7 +23,7 @@
       -for row in rows do
         -onclick = "show_update_form(#{row.each{|v| v.to_s+','}})"
         %tr
-          -row.each_index do |i|
+          -row.each_with_name do |value, name|
             -if fields[i].type == 'Array'
               -value = []
               -row[i].each do |v|

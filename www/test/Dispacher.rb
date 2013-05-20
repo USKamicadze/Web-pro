@@ -5,7 +5,7 @@ class Dispatcher
 
   def initialize(cgi,connection)
     if cgi['table'].empty?
-      cgi.params['table'] = ['goods']
+      cgi.params['table'] = ['advanced_goods']
     end
     @cgi = cgi
     @connection = connection

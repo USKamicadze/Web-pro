@@ -169,7 +169,7 @@ class Model
     sth.execute
     rows = []
     sth.fetch{|row|
-      rows << row.clone
+      rows << row
     }
     print rows
     sth.finish

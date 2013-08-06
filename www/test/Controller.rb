@@ -50,7 +50,7 @@ class Image_Controller < Controller
     {
         :table => @model.name,
         :fields => @model.get_all_fields(connection),
-        :rows => @model.select(connection, false),
+        :rows => @model.select(connection),
     }
   end
 

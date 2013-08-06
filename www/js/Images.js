@@ -7,7 +7,7 @@ function DeleteImg(id) {
         position: [300,300],
         buttons: {
             "Да": function() {
-                $.post('/test/bd.rb', {table: 'images', action: 'delete', id:id})
+                $.post('/test/index.rb', {table: 'images', action: 'delete', id:id})
                 $('div[img_id='+id+']').remove()
                 $( this ).dialog( "close" );
             },

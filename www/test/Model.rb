@@ -12,7 +12,7 @@ class Field
     Hash[instance_variables.map { |var| [var[1..-1].to_sym, instance_variable_get(var)] }]
   end
 
-  def to_json
+  def to_json(json_generator)
     to_h.to_json
   end
 
@@ -79,7 +79,7 @@ class Model
     require 'time'
     require_relative 'Image'
     @images_fields.each{|field|
-      link = "#{Time.now.nsec}.#{params[field.name].original_filename.split.last}"
+      link = "#{Time.now.nsec}.#{params[field.name].original_filename.split('.').last}"
       File.open('images\\' + link, 'wb'){ |file| file.write params[field.name].read }
       Image.create_thumb(params[field.name], link)
       params.params[field.name] = [link]
@@ -185,12 +185,13 @@ class Model
   end
 
   def get_all_fields(connection)
-    Hash.new((@fields + @refers).map{|field|
+    test = Hash[(@fields + @refers).map{|field|
       if field.type == 'Refer_String' || field.type == 'Array'
         field.set_options(connection)
       end
       [field.name, field]
-    })
+    }]
+    test
   end
 
 end
@@ -207,7 +208,7 @@ class Categories < Model
     data = {}
     sth.fetch{|row|
       data[row['parent_id']] = [] if data[row['parent_id']] == nil
-      data[row['parent_id']] << row.to_h
+      data[row['parent_id']] << row
     }
     sth.finish
     data

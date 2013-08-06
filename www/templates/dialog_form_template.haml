@@ -1,0 +1,27 @@
+%form#dialog{:method => 'post', :action => "/test/index.rb", :enctype => 'multipart/form-data'}
+  -fields.each do |name, field|
+    -next if name == 'id' && act == 'add'
+    .field
+      %label{:for => field.name}= field.caption
+      -if name == 'id' && act == 'update'
+        %input{:type => 'text', :name => 'id', :readonly => 'readonly'}
+      -else case field.type
+        -when 'Integer' then
+          %input.num_filter{:type => 'text', :name => field.name}
+        -when 'Array' then
+          %select{:multiple => 'multiple', :name => field.name}
+            -field.options.each do |opt|
+              %option{:value => opt[0]}= opt[1]
+        -when 'Refer_String' then
+          %select{:name => field.name}
+            -field.options.each do |opt|
+              %option{:value => opt[0]}= opt[1]
+        -when 'Image' then
+          %input{:title => 'Обзор', :type => 'file', :name => field.name, :accept => 'image/jpeg,image/png,image/gif'}
+        -else
+          %input{:type => 'text', :name => field.name}
+    %br
+  %input{:class => 'btn', :type => 'submit', :name => 'submit', :value => act == 'add' ? 'Добавить':'Изменить'}
+  %input.cancel{:class => 'btn', :type => 'button', :onclick => 'hide_form(af)', :value => 'Отменить'}
+  %input{:type => 'hidden', :name => 'action', :value => act}
+  %input{:type => 'hidden', :name => 'table', :value => table}

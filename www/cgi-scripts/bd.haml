@@ -9,17 +9,17 @@
     %script{:src => '/js/TestDB.js'}
   %body
     -if error
-      %p Произошла ошибка
-      %p Код ошибки:   =error.err
-      %p Текст ошибки: =error.errstr
+      %p пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+      %p пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ:   =error.err
+      %p пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: =error.errstr
     -else
     %table{:id => 'goods'}
       %thead
         %tr
           %th ID
-          %th Название
-          %th Тип
-          %th Цена
+          %th пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+          %th пїЅпїЅпїЅ
+          %th пїЅпїЅпїЅпїЅ
           %th
       -for row in rows do
         -onclick = "show_update_form('#{row['id']}', '#{row['name']}', '#{row['type']}', '#{row['price']}')"
@@ -29,41 +29,41 @@
           %td{:onclick => onclick}= row['type']
           %td{:onclick => onclick}= row['price']
           %td
-            %a.minimal{:href => "/cgi-bin/bd.rb?delete=delete&id=#{row['id']}"} Удалить
-    %button.minimal#add_button{:onclick => 'show_add_form()'} Добавить
-    %form#add{:method => 'post', :action => '/cgi-bin/bd.rb', 'accept-charset' => 'windows-1251'}
+            %a.minimal{:href => "/cgi-bin/index.rb?delete=delete&id=#{row['id']}"} пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    %button.minimal#add_button{:onclick => 'show_add_form()'} пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    %form#add{:method => 'post', :action => '/cgi-bin/index.rb', 'accept-charset' => 'windows-1251'}
       .field
-        %label{:for => 'name'} Название:
+        %label{:for => 'name'} пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:
         %input{:type => 'text', :name => 'name'}
       %br
       .field
-        %label{:for => 'type'} Тип:
+        %label{:for => 'type'} пїЅпїЅпїЅ:
         %input{:type => 'text', :name => 'type'}
       %br
       .field
-        %label{:for => 'price'} Цена:
+        %label{:for => 'price'} пїЅпїЅпїЅпїЅ:
         %input.num_filter{:type => 'text', :name => 'price'}
       %br
-      %input.minimal{:type => 'submit', :name => 'add', :value => 'Добавить'}
-      %input.minimal{:type => 'button', :onclick => 'hide_form(af)', :value => 'Отмена'}
-    %form#update{:method => 'post', :action => '/cgi-bin/bd.rb', 'accept-charset' => 'windows-1251'}
+      %input.minimal{:type => 'submit', :name => 'add', :value => 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'}
+      %input.minimal{:type => 'button', :onclick => 'hide_form(af)', :value => 'пїЅпїЅпїЅпїЅпїЅпїЅ'}
+    %form#update{:method => 'post', :action => '/cgi-bin/index.rb', 'accept-charset' => 'windows-1251'}
       .field
         %label{:for => 'id'} ID:
         %input{:type => 'text', :name => 'id', :disabled => '1'}
       %br
       .field
-        %label{:for => 'name'} Название:
+        %label{:for => 'name'} пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:
         %input{:type => 'text', :name => 'name'}
       %br
       .field
-        %label{:for => 'type'} Тип:
+        %label{:for => 'type'} пїЅпїЅпїЅ:
         %input{:type => 'text', :name => 'type'}
       %br
       .field
-        %label{:for => 'price'} Цена:
+        %label{:for => 'price'} пїЅпїЅпїЅпїЅ:
         %input.num_filter{:type => 'text', :name => 'price'}
       %br 
       %input{:type => 'hidden', :name => 'id'}
-      %input.minimal{:type => 'submit', :name => 'update', :value => 'Изменить'}
-      %input.minimal{:type => 'button', :onclick => 'hide_form(uf)', :value => 'Отмена'}
+      %input.minimal{:type => 'submit', :name => 'update', :value => 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'}
+      %input.minimal{:type => 'button', :onclick => 'hide_form(uf)', :value => 'пїЅпїЅпїЅпїЅпїЅпїЅ'}
     %p#message= message

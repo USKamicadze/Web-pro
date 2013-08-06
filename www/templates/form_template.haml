@@ -1,24 +1,24 @@
-﻿-fields.each_index do |i|
-  -next if i == 0 && act == 'add'
+﻿-fields.each do |name, field|
+  -next if name == 'id' && act == 'add'
   .field
-    %label{:for => fields[i].name}= fields[i].caption
-    -if i == 0 && act == 'update'
+    %label{:for => field.name}= field.caption
+    -if name == 'id' && act == 'update'
       %input{:type => 'text', :name => 'id', :readonly => 'readonly'}
-    -else case fields[i].type
+    -else case field.type
       -when 'Integer' then
-        %input.num_filter{:type => 'text', :name => fields[i].name}
+        %input.num_filter{:type => 'text', :name => field.name}
       -when 'Array' then
-        %select{:multiple => 'multiple', :name => fields[i].name}
-          -fields[i].options.each do |opt|
+        %select{:multiple => 'multiple', :name => field.name}
+          -field.options.each do |opt|
             %option{:value => opt[0]}= opt[1]
       -when 'Refer_String' then
-        %select{:name => fields[i].name}
-          -fields[i].options.each do |opt|
+        %select{:name => field.name}
+          -field.options.each do |opt|
             %option{:value => opt[0]}= opt[1]
       -when 'Image' then
-        %input{:title => 'Обзор', :type => 'file', :name => fields[i].name, :accept => 'image/jpeg,image/png,image/gif'}
+        %input{:title => 'Обзор', :type => 'file', :name => field.name, :accept => 'image/jpeg,image/png,image/gif'}
       -else
-        %input{:type => 'text', :name => fields[i].name}
+        %input{:type => 'text', :name => field.name}
   %br
 %input{:class => 'btn', :type => 'submit', :name => 'submit', :value => act == 'add' ? 'Добавить':'Изменить'}
 %input.cancel{:class => 'btn', :type => 'button', :onclick => 'hide_form(af)', :value => 'Отменить'}

@@ -1,4 +1,3 @@
-#encoding: windows-1251
 require_relative 'Model'
 MODELS = {
   'users' => Model.new(

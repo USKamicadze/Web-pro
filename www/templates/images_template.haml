@@ -19,17 +19,16 @@
   %body
     #page
       %button#add_button{:class => 'btn'} Добавить
-      %a{:href => "/test/bd.rb?table=goods"} Товары
-      %a{:href => "/test/bd.rb?table=users"} Пользователи
-      %a{:href => "/test/bd.rb?table=groups"} Группы
-      %a{:href => "/test/bd.rb?table=orders"} Заказы
-      %a{:href => "/test/bd.rb?table=category"} Категории
-      %a{:href => "/test/bd.rb?table=images"} Картинки
-      %a{:href => "/test/bd.rb?table=advanced_goods"} Товары2
+      %a{:href => "/test/index.rb?table=goods"} Товары
+      %a{:href => "/test/index.rb?table=users"} Пользователи
+      %a{:href => "/test/index.rb?table=groups"} Группы
+      %a{:href => "/test/index.rb?table=orders"} Заказы
+      %a{:href => "/test/index.rb?table=category"} Категории
+      %a{:href => "/test/index.rb?table=images"} Картинки
       -f = Haml::Engine.new(File.read('templates/form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'add', :fields => fields, :table => table})
-      %form#add{:method => 'post', :action => "/test/bd.rb", :enctype => 'multipart/form-data'}= f
+      %form#add{:method => 'post', :action => "/test/index.rb", :enctype => 'multipart/form-data'}= f
       -f = Haml::Engine.new(File.read('templates/form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'update', :fields => fields, :table => table})
-      %form#update{:method => 'post', :action => '/test/bd.rb', :enctype => 'multipart/form-data'}= f
+      %form#update{:method => 'post', :action => '/test/index.rb', :enctype => 'multipart/form-data'}= f
       .demonstrations
         -for row in rows do
           .image_container{:img_id => row['id']}

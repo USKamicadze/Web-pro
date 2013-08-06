@@ -2,46 +2,43 @@
   %head 
     %meta{'http-equiv' => "Content-Type", :content => "text/html; charset=windows-1251"}
     %title Goods
-    %link{:rel => 'stylesheet', :type => 'text/css', :href => '/js/jquery-ui-1.10.0.custom/css/smoothness/jquery-ui-1.10.0.custom.css'}
+    %link{:rel => 'stylesheet', :type => 'text/css', :href => '/plugins/jquery-ui-1.10.3.custom/css/vader/jquery-ui-1.10.3.custom.css'}
     %link{:rel => 'stylesheet', :type => 'text/css', :href => '/css/style_main.css'}
-    %script{:src => '/js/jquery-ui-1.10.0.custom/js/jquery-1.9.0.js'}
-    %script{:src => '/js/jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.js'}
-    %script{:src => '/js/TestDB.js'}
-  %body
-    %a{:href => "/test/bd.rb?table=goods"} Товары
-    %a{:href => "/test/bd.rb?table=users"} Пользователи
-    %a{:href => "/test/bd.rb?table=groups"} Группы
-    %a{:href => "/test/bd.rb?table=orders"} Заказы
-    %a{:href => "/test/bd.rb?table=category"} Категории
-    %a{:href => "/test/bd.rb?table=images"} Картинки
-    %table{:id => 'goods'}
-      %thead
-        %tr
-          -for field in fields do
-            %th= field.caption
-          %th
-      -for row in rows do
-        -onclick = "show_update_form(#{row.each{|v| v.to_s+','}})"
-        %tr
-          -row.each_with_name do |value, name|
-            -if fields[i].type == 'Array'
-              -value = []
-              -row[i].each do |v|
-                -fields[i].options.each do |opt|
-                  -value.push(opt[1]) if v == opt[0]
-              -value = value.join(', ')
-            -elsif fields[i].type == 'Refer_String'
-              -v = row[i][0]
-              -fields[i].options.each do |opt|
-                -value = opt[1] if v == opt[0]
-            -elsif fields[i].type == 'Image'
-              -value = Haml::Engine.new('%img{:src => "/images/#{row}"}').render(Object.new, {:row => row[i]})
-            -else value = row[i]
-            %td{:onclick => onclick}= value
-          %td
-            %a.minimal{:href => "/test/bd.rb?table=#{table}&action=delete&id=#{row[0]}"} Удалить
-    %button.minimal#add_button{:onclick => 'show_add_form()'} Добавить
-    -f = Haml::Engine.new(File.read('templates\form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'add', :fields => fields, :table => table})
-    %form#add{:method => 'post', :enctype => "multipart/form-data", :action => "/test/bd.rb"}= f
-    -f = Haml::Engine.new(File.read('templates\form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'update', :fields => fields, :table => table})
-    %form#update{:method => 'post', :enctype => "multipart/form-data", :action => '/test/bd.rb', 'accept-charset' => 'UTF-8'}= f
+    %link{:rel => 'stylesheet', :type => 'text/css', :href => '/css/form.css'}
+    %link{:rel => 'stylesheet', :type => 'text/css', :href => '/plugins/jquery.jqGrid-4.5.0/css/ui.jqgrid.css'}
+    %link{:rel => 'stylesheet', :type => 'text/css', :href => '/css/bootstrap.css'}
+    %link{:rel => 'stylesheet', :type => 'text/css', :href => '/css/bootstrap-responsive.css'}
+    %script{:src => '/js/bootstrap.js'}
+    %script{:src => '/plugins/jquery-ui-1.10.3.custom/js/jquery-1.9.1.js'}
+    %script{:src => '/plugins/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.js'}
+    %script{:src => '/plugins/jquery.jqGrid-4.5.0/js/i18n/grid.locale-ru.js'}
+    %script{:src => '/plugins/jquery.jqGrid-4.5.0/js/jquery.jqGrid.src.js'}
+    %script{:src => '/js/bootstrap.file-input.js'}
+    %script{:src => 'js/DebugJS'}
+    %script{:src => '/js/main.js'}
+    %script{:src => '/js/ImagesForm.js'}
+
+    -$Log.write(fields.to_json)
+  %body{:onload => "PrepareGrid(#{fields.to_json})"}
+    #page
+      %button#add_button{:class => 'btn'} Добавить
+      %a{:href => "/test/index.rb?table=goods"} Товары
+      %a{:href => "/test/index.rb?table=users"} Пользователи
+      %a{:href => "/test/index.rb?table=groups"} Группы
+      %a{:href => "/test/index.rb?table=orders"} Заказы
+      %a{:href => "/test/index.rb?table=category"} Категории
+      %a{:href => "/test/index.rb?table=images"} Картинки
+      -f = Haml::Engine.new(File.read('templates/form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'add', :fields => fields, :table => table})
+      %form#add{:method => 'post', :action => "/test/index.rb", :enctype => 'multipart/form-data'}= f
+      -f = Haml::Engine.new(File.read('templates/form_template.haml',:encoding => 'UTF-8')).render(Object.new,{:act => 'update', :fields => fields, :table => table})
+      %form#update{:method => 'post', :action => '/test/index.rb', :enctype => 'multipart/form-data'}= f
+      %table{:id => 'content_table'}
+        %thead
+          %tr
+            -fields.each do |key, field|
+              %th= field.name
+        -for row in rows do
+          %tr
+            -row.each_with_name do |row_value, name|
+              %td= row_value
+      #table_pager
